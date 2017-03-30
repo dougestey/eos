@@ -4,7 +4,25 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
-    // Add options here
+    outputPaths: {
+      app: {
+        html: 'index.html',
+        css: {
+          'app': '/assets/app.css'
+        }
+      }
+    },
+    postcssOptions: {
+      compile: {
+        enabled: false
+      },
+      filter: {
+        enabled: true,
+        plugins: [
+          { module: require('postcss-nesting') }
+        ]
+      }
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
